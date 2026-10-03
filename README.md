@@ -143,6 +143,7 @@ At the end of the journey, three sections follow in order:
 index.html          page markup; loads stylesheets and scripts in order
 README.md
 assets/
+  favicon.svg       site icon: a maze around a lamp-lit memory, overgrown by a vine
   audio/only-you.mp3 looping background music
   warp.jpg          the terminal image for the Warp section
   found-parts/      cut-out pieces used to build the found-poem slides
