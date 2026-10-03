@@ -1,0 +1,113 @@
+/* Level 1: corkboard, framed portrait, clippings, cuttings tray. */
+
+/* ----- Level 1: corkboard with a framed portrait under newspaper clippings ----- */
+.slide.reveal-board {
+  background:
+    radial-gradient(ellipse 46% 52% at 50% 48%, rgba(255, 222, 160, 0.22), transparent 70%),
+    radial-gradient(circle at 20% 30%, rgba(60,30,10,0.35) 0 1px, transparent 1.6px) 0 0 / 7px 7px,
+    radial-gradient(circle at 70% 60%, rgba(255,220,170,0.16) 0 1px, transparent 1.6px) 0 0 / 9px 9px,
+    radial-gradient(circle at 40% 80%, rgba(40,20,8,0.28) 0 1.2px, transparent 2px) 0 0 / 13px 11px,
+    linear-gradient(160deg, #a5774a 0%, #8b5e37 50%, #6a4425 100%);
+  box-shadow:
+    inset 0 0 0 clamp(10px, 1.6vw, 20px) #3e2814,
+    inset 0 0 0 calc(clamp(10px, 1.6vw, 20px) + 4px) #5c3d20,
+    inset 0 0 160px rgba(0,0,0,0.6);
+}
+.portrait-wrap {
+  position: absolute; z-index: 4;
+  left: 50%; top: 50%;
+  width: min(30vw, 50vh);
+  transform: translate(-50%, -50%);
+}
+.portrait-wrap::before {
+  /* frame + mat */
+  content: "";
+  position: absolute; inset: -22px; z-index: -1;
+  background:
+    linear-gradient(#f2ead6, #f2ead6) padding-box,
+    linear-gradient(135deg, #6b4a26, #3a2410 45%, #7a5530 60%, #2a1a0a) border-box;
+  border: 14px solid transparent;
+  box-shadow: 0 22px 44px rgba(0,0,0,0.55), 0 4px 10px rgba(0,0,0,0.4);
+}
+.portrait-wrap::after {
+  /* the pin holding it to the board */
+  content: "";
+  position: absolute; left: 50%; top: -34px;
+  width: 14px; height: 14px; margin-left: -7px; border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #ff8a7a, #b02a1e 60%, #5a0e08);
+  box-shadow: 0 3px 4px rgba(0,0,0,0.5);
+}
+.portrait-wrap .obj {
+  position: relative; display: block;
+  width: 100%; left: auto; top: auto;
+  filter: sepia(0.18) contrast(1.05);
+  transition: filter 1.2s ease;
+}
+.slide.reveal-board.revealed .portrait-wrap .obj { filter: none; }
+.portrait-wrap .strip {
+  max-width: none;
+  cursor: grab;
+  filter: drop-shadow(0 3px 5px rgba(0,0,0,0.45)) sepia(0.12);
+  transition: filter 0.25s ease;
+  touch-action: none;
+}
+.portrait-wrap .strip:hover { filter: drop-shadow(0 6px 10px rgba(0,0,0,0.5)) brightness(1.05); }
+.portrait-wrap .strip.dragging { cursor: grabbing; filter: drop-shadow(0 12px 16px rgba(0,0,0,0.55)); z-index: 9 !important; }
+.portrait-wrap .strip.peeling {
+  transition: left 0.6s cubic-bezier(0.3, 0.7, 0.2, 1), top 0.6s cubic-bezier(0.3, 0.7, 0.2, 1),
+    width 0.6s ease, transform 0.6s ease;
+  z-index: 9 !important;
+}
+.portrait-wrap .strip.blocker.moved { filter: drop-shadow(0 2px 3px rgba(0,0,0,0.4)) brightness(0.88) sepia(0.3); }
+.scrap-tray {
+  position: absolute; z-index: 3;
+  right: clamp(1.5rem, 5vw, 5rem); top: 50%;
+  width: clamp(150px, 19vw, 270px); height: min(60vh, 460px);
+  transform: translateY(-50%) rotate(1deg);
+  background:
+    linear-gradient(180deg, rgba(0,0,0,0.25), transparent 22%),
+    repeating-linear-gradient(90deg, rgba(0,0,0,0.1) 0 1px, transparent 1px 9px),
+    linear-gradient(180deg, #6c4a2a, #4a3018);
+  border: 6px solid #3a2410;
+  box-shadow: inset 0 8px 18px rgba(0,0,0,0.55), 0 12px 24px rgba(0,0,0,0.45);
+}
+.scrap-tray span {
+  position: absolute; left: 50%; top: 8px; transform: translateX(-50%);
+  padding: 0.2rem 0.6rem;
+  font: 0.56rem var(--mono); letter-spacing: 0.24em; text-transform: uppercase;
+  color: #2a1a0a; background: #eadcb6; box-shadow: 0 1px 2px rgba(0,0,0,0.4);
+}
+.board-note {
+  position: absolute; z-index: 3;
+  left: clamp(1.5rem, 5vw, 5rem); top: 50%;
+  width: clamp(150px, 17vw, 230px);
+  transform: translateY(-60%) rotate(-3deg);
+  padding: 1.6rem 1rem 1.1rem;
+  background:
+    repeating-linear-gradient(180deg, transparent 0 19px, rgba(60,70,90,0.2) 19px 20px),
+    linear-gradient(165deg, #f4ecd4, #ddd0b0);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.45);
+  font: italic 0.82rem/1.55 var(--serif); color: #2a2216;
+}
+.board-note b { display: block; font-style: normal; font-size: 0.74rem; letter-spacing: 0.06em; margin-bottom: 0.4rem; }
+.board-note::before {
+  content: ""; position: absolute; left: 50%; top: 8px;
+  width: 12px; height: 12px; margin-left: -6px; border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #9ad0ff, #2a64b0 60%, #0e2a5a);
+  box-shadow: 0 2px 3px rgba(0,0,0,0.5);
+}
+.slide.reveal-board .level-progress {
+  top: auto; bottom: clamp(1.4rem, 5vh, 3rem);
+  font-size: 0.7rem; color: #f2e4c4;
+  background: rgba(30,18,8,0.72); padding: 0.4rem 0.9rem;
+  border: 1px solid rgba(242,228,196,0.3);
+}
+@media (max-width: 760px) {
+  .portrait-wrap { width: min(56vw, 34vh); top: 40%; }
+  .scrap-tray {
+    right: 50%; top: auto; bottom: 4.5rem;
+    width: 78vw; height: 15vh;
+    transform: translateX(50%);
+  }
+  .board-note { display: none; }
+}

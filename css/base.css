@@ -1,0 +1,55 @@
+/* Root variables, reset, body, sound toggle. */
+
+:root {
+  --bg: #0d0d0f;
+  --seam: #1c1914;  /* every section fades into this at its edges, so boundaries dissolve */
+  --ink: #e8e4dc;
+  --mute: #8a8680;
+  --line: rgba(232, 228, 220, 0.12);
+  --blue: #6b8a9a;
+  --yellow: #c9b98a;
+  --red: #8b4545;
+  --sticky: #d4c48a;
+  --serif: "Libre Baskerville", Georgia, serif;
+  --mono: "IBM Plex Mono", ui-monospace, monospace;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--ink);
+  overflow-x: clip; /* clip avoids breaking position:sticky (unlike hidden) */
+  -webkit-font-smoothing: antialiased;
+}
+body.locked { overflow: hidden; }
+button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+
+/* bottom-right, opposite the map button */
+#sound-toggle {
+  position: fixed; right: 0.85rem; bottom: 0.85rem; z-index: 300;
+  height: 52px; padding: 0 0.95rem;
+  font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border: 2px solid #5a3d18; border-radius: 4px;
+  background: linear-gradient(145deg, rgba(42,34,24,0.94), rgba(20,17,12,0.94));
+  box-shadow: 2px 2px 0 #3a2610, inset 0 0 0 1px rgba(255,230,180,0.12);
+  color: var(--mute);
+}
+#sound-toggle:hover { color: var(--ink); }
+#sound-toggle[aria-pressed="true"] { color: #e8d5a3; border-color: #8a6230; }
+
+/* custom scrollbar — brass thumb on the seam colour */
+::-webkit-scrollbar { width: 12px; height: 12px; }
+::-webkit-scrollbar-track { background: #14110d; box-shadow: inset 1px 0 0 rgba(232,228,220,0.06); }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #c9a86a, #8a6230 55%, #5f7a3e);
+  border: 3px solid #14110d; border-radius: 8px;
+}
+::-webkit-scrollbar-thumb:hover { background: linear-gradient(180deg, #e8d5a3, #a9793c 55%, #76964c); }
+::-webkit-scrollbar-corner { background: #14110d; }
+/* browsers without ::-webkit-scrollbar (Firefox) — setting this in Chrome would override the rules above */
+@supports not selector(::-webkit-scrollbar) {
+  html { scrollbar-color: #a9793c #14110d; scrollbar-width: thin; }
+}
+#chart .web-node { cursor: pointer; }

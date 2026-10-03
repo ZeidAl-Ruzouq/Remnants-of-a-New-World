@@ -1,0 +1,162 @@
+/* Warp: full-bleed CRT terminal room. */
+
+/* ----- warp: a full-bleed terminal room, an old beige CRT on a desk ----- */
+.beat.warp {
+  max-width: none; width: 100%;
+  margin: 0; padding: 0;
+  min-height: 100vh;
+}
+.warp-room {
+  position: relative;
+  min-height: 100vh;
+  display: flex; flex-direction: column; align-items: center; justify-content: flex-end;
+  padding: 16vh 1.25rem 0;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse 46% 40% at 50% 48%, rgba(70, 190, 160, 0.2), transparent 70%),
+    radial-gradient(ellipse 100% 50% at 50% 100%, rgba(0,0,0,0.6), transparent 70%),
+    repeating-linear-gradient(90deg, rgba(120, 210, 190, 0.035) 0 1px, transparent 1px 72px),
+    repeating-linear-gradient(0deg, rgba(120, 210, 190, 0.03) 0 1px, transparent 1px 72px),
+    linear-gradient(180deg, var(--seam) 0%, #121a1c 22%, #0b1417 62%, #15120e 100%);
+}
+.warp-code {
+  /* faint code scrolling up the back wall */
+  position: absolute; left: 0; right: 0; top: 0;
+  margin: 0; padding: 0 4vw;
+  font: 300 13px/2.3 var(--mono);
+  color: rgba(120, 230, 190, 0.09);
+  white-space: pre;
+  overflow: hidden;
+  animation: warp-code 60s linear infinite;
+  pointer-events: none;
+  -webkit-mask-image: linear-gradient(180deg, transparent, #000 20%, #000 70%, transparent);
+  mask-image: linear-gradient(180deg, transparent, #000 20%, #000 70%, transparent);
+}
+@keyframes warp-code { from { transform: translateY(0); } to { transform: translateY(-50%); } }
+.warp-glow {
+  position: absolute; left: 50%; top: 46%;
+  width: min(70rem, 140vw); height: 70vh;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(ellipse closest-side, rgba(90, 230, 180, 0.16), transparent 72%);
+  animation: warp-breathe 4.8s ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes warp-breathe { 50% { opacity: 0.6; } }
+.crt {
+  position: relative; z-index: 2;
+  width: min(40rem, 92vw);
+  padding: 22px 22px 0;
+  border-radius: 18px 18px 8px 8px;
+  background: linear-gradient(180deg, #dcd5c2 0%, #c4bca6 55%, #a39a83 100%);
+  box-shadow:
+    0 34px 60px rgba(0,0,0,0.65),
+    0 0 80px rgba(90, 230, 180, 0.12),
+    inset 0 2px 0 rgba(255,255,255,0.55),
+    inset 0 -5px 12px rgba(0,0,0,0.25);
+}
+.crt-screen {
+  position: relative;
+  min-height: min(26rem, 48vh);
+  border-radius: 16px / 20px;
+  overflow: hidden;
+  background: radial-gradient(ellipse at 50% 40%, #0a2420 0%, #04110f 70%, #020807 100%);
+  box-shadow:
+    0 0 0 6px #8f8771,
+    inset 0 0 0 2px #1f241f,
+    inset 0 0 70px rgba(0,0,0,0.9);
+}
+.crt-screen::after {
+  content: "";
+  position: absolute; inset: 0; pointer-events: none; z-index: 3;
+  background:
+    repeating-linear-gradient(0deg, rgba(0,0,0,0.26) 0 1px, transparent 1px 3px),
+    radial-gradient(ellipse at 50% 50%, transparent 58%, rgba(0,0,0,0.55) 100%),
+    linear-gradient(115deg, rgba(255,255,255,0.06) 0 18%, transparent 30%);
+  animation: crt-flicker 6s steps(1, end) infinite;
+}
+@keyframes crt-flicker { 0%, 100% { opacity: 1; } 41% { opacity: 0.86; } 42% { opacity: 1; } 77% { opacity: 0.92; } }
+.crt-chin {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 10px 6px 12px;
+  font: 600 9px var(--mono); letter-spacing: 0.24em; text-transform: uppercase;
+  color: #6c6553;
+}
+.crt-led {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: #5cff9c; box-shadow: 0 0 8px #5cff9c;
+}
+.crt-stand {
+  position: relative; z-index: 2;
+  width: min(14rem, 36vw); height: 30px;
+  background: linear-gradient(180deg, #a69e88, #7b745e);
+  clip-path: polygon(22% 0, 78% 0, 100% 100%, 0 100%);
+}
+.warp-desk {
+  position: relative; z-index: 1;
+  width: 100vw; height: 18vh;
+  margin-top: -2px;
+  background:
+    radial-gradient(ellipse 34% 60% at 50% 0%, rgba(90, 230, 180, 0.14), transparent 70%),
+    repeating-linear-gradient(90deg, rgba(0,0,0,0.14) 0 1px, transparent 1px 11px),
+    linear-gradient(180deg, #4a301c 0%, #2e1d10 60%, var(--seam) 100%);
+  border-top: 3px solid #5a3c24;
+  box-shadow: 0 -12px 30px rgba(0,0,0,0.5);
+}
+.term {
+  position: relative; z-index: 2;
+  font-family: var(--mono);
+  color: #8ff0c8;
+  text-shadow: 0 0 6px rgba(110, 240, 190, 0.5);
+}
+.term-bar {
+  display: flex; gap: 0.4rem; align-items: center;
+  padding: 0.55rem 0.85rem;
+  border-bottom: 1px solid rgba(140, 240, 200, 0.16);
+}
+.term-bar i {
+  width: 8px; height: 8px; border-radius: 50%; display: block;
+  background: rgba(140, 240, 200, 0.35);
+}
+.term-bar i:nth-child(1) { background: #d0685c; }
+.term-bar i:nth-child(2) { background: #d8c070; }
+.term-bar i:nth-child(3) { background: #6cc7a0; }
+.term-body { padding: 1.4rem 1.3rem 1.6rem; }
+.term-body .cmd { color: #b8ffe0; font-size: 0.95rem; margin-bottom: 0.9rem; }
+.term-body .cmd b {
+  display: inline-block; width: 0.5em; height: 1em; background: #8ff0c8;
+  vertical-align: text-bottom; margin-left: 0.1em; animation: blink 1s steps(1) infinite;
+  box-shadow: 0 0 8px rgba(140, 240, 200, 0.7);
+}
+@keyframes blink { 50% { opacity: 0; } }
+.term-body .err {
+  color: #ff9a8a; font-style: italic; font-size: 0.92rem;
+  text-shadow: 0 0 6px rgba(255, 120, 100, 0.5);
+  opacity: 0; transition: opacity 0.5s; margin-bottom: 1rem;
+}
+.term-body .err.show { opacity: 1; }
+.term-body .run {
+  font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.16em;
+  text-transform: uppercase; padding: 0.65rem 1.2rem;
+  color: #8ff0c8;
+  border: 1px solid rgba(140, 240, 200, 0.55);
+  box-shadow: 0 0 12px rgba(140, 240, 200, 0.18), inset 0 0 10px rgba(140, 240, 200, 0.08);
+}
+.term-body .run:hover:not(:disabled) { background: rgba(140, 240, 200, 0.12); }
+.term-body .run:disabled { opacity: 0.4; }
+.bits {
+  margin-top: 1rem; font-size: 0.5rem; letter-spacing: 0.08em;
+  color: rgba(120, 230, 190, 0.45); word-break: break-all; line-height: 1.45;
+}
+.warp-img {
+  display: none;
+  width: auto; max-width: 100%; max-height: 42vh;
+  margin: 1.1rem auto 0;
+  border: 1px solid rgba(140, 240, 200, 0.25);
+  box-shadow: 0 0 24px rgba(90, 230, 180, 0.15);
+}
+.warp-img.show { display: block; animation: warp-in 1s ease both; }
+@keyframes warp-in {
+  from { opacity: 0; filter: brightness(2.4) blur(3px); transform: scaleY(0.04); }
+  45% { opacity: 1; transform: scaleY(1); }
+  to { opacity: 1; filter: none; transform: none; }
+}
