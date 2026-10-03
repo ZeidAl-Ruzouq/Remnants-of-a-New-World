@@ -383,6 +383,8 @@ function buildJourney() {
             link("https://docs.google.com/document/d/1HxfWr1FAbGaS_ZvMk1D6Ks132XgQmGawwon5yFmA5jE/edit?tab=t.0", "Google Doc") + "</li>" +
           "<li>Warp reflection — " +
             link("https://docs.google.com/document/d/1NsaASu_AoFh2bdqSm7z_2T7JUJAFuhirr7P3jvbqQdY/edit?tab=t.0", "Google Doc") + "</li>" +
+          "<li>Source code — " +
+            link("https://github.com/ZeidAl-Ruzouq/Remnants-of-a-New-World", "GitHub repository") + "</li>" +
           "<li>Project assignment — " +
             link("https://jhu.instructure.com/courses/130735/assignments/1322810", "Canvas") + "</li>" +
           "<li>HTML Review, Issue 05 — " +

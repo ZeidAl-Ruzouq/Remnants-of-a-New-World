@@ -2,7 +2,7 @@
 
 An online portfolio built as a free-form, game-like website. The reader moves through found poems, generated poetry, a weaving and small interactive levels. They choose their own path through a maze, read notes pinned to walls, and gradually discover what they've missed.
 
-This README explains what the project is about (a summary of the author's reflection) and how the repository works. The full reflection is shown at the end of the site, after the achievements. It is stored in `js/reflection.js` and can also be read here in [REFLECTION.md](REFLECTION.md).
+This README explains what the project is about (a summary of the author's reflection) and how the repository works. The full reflection is shown at the end of the site, after the achievements, and is stored in `js/reflection.js`.
 
 ---
 
@@ -133,7 +133,7 @@ At the end of the journey, three sections follow in order:
 
 - **Achievements:** 29 in total, covering routes, stops, levels, the maze, and the notes. You can filter them by earned, all or missed.
 - **Reflection:** the full reflection essay.
-- **References:** links to the Markov poems and reflection, the found poems, the found-poems reflection, the Warp reflection, the project assignment and HTML Review issue 05. It also cites Kalanithi, Padgett and Kim.
+- **References:** links to the Markov poems and reflection, the found poems, the found-poems reflection, the Warp reflection, this GitHub repository, the project assignment and HTML Review issue 05. It also cites Kalanithi, Padgett and Kim.
 
 ---
 
@@ -142,7 +142,6 @@ At the end of the journey, three sections follow in order:
 ```
 index.html          page markup; loads stylesheets and scripts in order
 README.md
-REFLECTION.md       the full reflection essay
 assets/
   favicon.svg       site icon: a maze around a lamp-lit memory, overgrown by a vine
   audio/only-you.mp3 looping background music
