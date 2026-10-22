@@ -198,6 +198,12 @@ function buildJourney() {
         no.className = "sheet-no";
         no.textContent = sheet.label;
         paper.appendChild(no);
+        if (si === 0 && typeof POEM_TITLE === "string" && POEM_TITLE) {
+          const title = document.createElement("h3");
+          title.className = "poem-title";
+          title.textContent = POEM_TITLE;
+          paper.appendChild(title);
+        }
         sheet.lines.forEach((text, li) => {
           const p = document.createElement("p");
           p.className = "line";
@@ -419,7 +425,7 @@ function buildJourney() {
       sec.dataset.chart = "end";
       sec.dataset.chartLabel = "The End?";
       const h = document.createElement("h2");
-      h.textContent = "Process and Tools Statement";
+      h.textContent = "AI Standard of Conduct/Process and Tools Statement";
       sec.appendChild(h);
       PROCESS_TOOLS.forEach((block) => appendEssayBlock(sec, block));
       root.appendChild(sec);

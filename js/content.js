@@ -3,6 +3,9 @@
 /* =========================================================
    YOUR TEXT ONLY — poem lines
    ========================================================= */
+/* Title shown on the first desk sheet; nine stanzas follow. */
+const POEM_TITLE = "Connectional Transaction";
+
 /* Nine stanzas — the AAAA separator lines are stanza breaks and never rendered */
 const STANZAS = [
   [
@@ -44,20 +47,20 @@ const STANZAS = [
     "Or does morality reveal the person beneath the profession?",
     "What will our future choices leave behind?",
     "What will they allow us to breathe?",
-    "A surgeon can shape policy",
+    "A surgeon can shape policy.",
     "But policy does not always picture the homes behind it",
     "Healing requires renewal and humility",
     "It also requires belief and growth",
     "It requires a patient"
   ],
   [
-    "Illness revealed what scientists could miss",
-    "It also revealed what patients valued",
+    "Illness revealed what scientists could miss.",
+    "It also revealed what patients valued.",
     "Terminally ill, I was leaving one foundation behind",
     "I had to find another route"
   ],
   [
-    "Ultimately, found relationality, theory, studying, business, and policy left me dissatisfied",
+    "Ultimately, found that relationality, theory, studying, business, and policy left me dissatisfied.",
     "Knowledge sometimes avoided what was “invisible”",
     "Comfort entered patients’ rooms",
     "Can anyone truly be prepared to die?",
@@ -82,7 +85,7 @@ const STANZAS = [
     "Its voice could still reveal what mattered"
   ],
   [
-    "Belief was saved through presence",
+    "Medicine was saved through presence",
     "The patient began to grow through that presence",
     "The transaction between doctor and patient became fragile",
     "It became human-to-human",
