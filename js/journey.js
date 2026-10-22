@@ -23,6 +23,68 @@ function preloadJourneyAssets() {
   });
 }
 
+/** Fill an element with text; *like this* becomes italic. */
+function fillRichText(el, str) {
+  const re = /\*([^*]+)\*/g;
+  let last = 0, m;
+  while ((m = re.exec(str))) {
+    if (m.index > last) el.appendChild(document.createTextNode(str.slice(last, m.index)));
+    const i = document.createElement("i");
+    i.textContent = m[1];
+    el.appendChild(i);
+    last = m.index + m[0].length;
+  }
+  if (last < str.length) el.appendChild(document.createTextNode(str.slice(last)));
+}
+
+function appendEssayBlock(parent, block) {
+  if (block.quote) {
+    const q = document.createElement("blockquote");
+    block.quote.forEach((line) => {
+      const l = document.createElement("span");
+      l.textContent = line;
+      q.appendChild(l);
+    });
+    parent.appendChild(q);
+    return;
+  }
+  const p = document.createElement("p");
+  fillRichText(p, block.p);
+  parent.appendChild(p);
+}
+
+function appendApaEntry(list, entry) {
+  const li = document.createElement("li");
+  entry.parts.forEach((part) => {
+    if (part.italic) {
+      const i = document.createElement("i");
+      i.textContent = part.italic;
+      li.appendChild(i);
+    } else {
+      li.appendChild(document.createTextNode(part.text));
+    }
+  });
+  if (entry.href) {
+    const a = document.createElement("a");
+    a.href = entry.href;
+    a.target = "_blank";
+    a.rel = "noopener noreferrer";
+    a.textContent = entry.href;
+    li.appendChild(a);
+  }
+  list.appendChild(li);
+}
+
+function appendApaList(parent, title, entries) {
+  const h = document.createElement("h2");
+  h.textContent = title;
+  parent.appendChild(h);
+  const ul = document.createElement("ul");
+  ul.className = "apa-list";
+  entries.forEach((entry) => appendApaEntry(ul, entry));
+  parent.appendChild(ul);
+}
+
 /* build interleaved journey */
 
 function buildJourney() {
@@ -348,21 +410,18 @@ function buildJourney() {
       const h = document.createElement("h2");
       h.textContent = "Reflection";
       sec.appendChild(h);
-      REFLECTION_ESSAY.forEach((block) => {
-        if (block.quote) {
-          const q = document.createElement("blockquote");
-          block.quote.forEach((line) => {
-            const l = document.createElement("span");
-            l.textContent = line;
-            q.appendChild(l);
-          });
-          sec.appendChild(q);
-        } else {
-          const p = document.createElement("p");
-          p.textContent = block.p;
-          sec.appendChild(p);
-        }
-      });
+      REFLECTION_ESSAY.forEach((block) => appendEssayBlock(sec, block));
+      root.appendChild(sec);
+    } else if (step.type === "process") {
+      const sec = document.createElement("section");
+      sec.id = "process";
+      sec.dataset.zone = "end";
+      sec.dataset.chart = "end";
+      sec.dataset.chartLabel = "The End?";
+      const h = document.createElement("h2");
+      h.textContent = "Process and Tools Statement";
+      sec.appendChild(h);
+      PROCESS_TOOLS.forEach((block) => appendEssayBlock(sec, block));
       root.appendChild(sec);
     } else if (step.type === "refs") {
       const sec = document.createElement("section");
@@ -370,30 +429,8 @@ function buildJourney() {
       sec.dataset.zone = "end";
       sec.dataset.chart = "end";
       sec.dataset.chartLabel = "The End?";
-      const link = (href, text) =>
-        '<a href="' + href + '" target="_blank" rel="noopener noreferrer">' + text + "</a>";
-      sec.innerHTML =
-        "<h2>References</h2>" +
-        "<ul>" +
-          "<li>Markov poems and reflection — " +
-            link("https://docs.google.com/document/d/1moxMrNwSOm2a69cQ_ovl5xBEKoB9r-7wB0LJvs6DCqU/edit?tab=t.0", "Google Doc") + "</li>" +
-          "<li>Found poems — Remnants of a New World — " +
-            link("https://drive.google.com/file/d/16MWYGTbL28bmbyB627_8dohjSYwqt7Jh/view?usp=sharing", "Google Drive") + "</li>" +
-          "<li>Found poems reflection — " +
-            link("https://docs.google.com/document/d/1HxfWr1FAbGaS_ZvMk1D6Ks132XgQmGawwon5yFmA5jE/edit?tab=t.0", "Google Doc") + "</li>" +
-          "<li>Warp reflection — " +
-            link("https://docs.google.com/document/d/1NsaASu_AoFh2bdqSm7z_2T7JUJAFuhirr7P3jvbqQdY/edit?tab=t.0", "Google Doc") + "</li>" +
-          "<li>Source code — " +
-            link("https://github.com/ZeidAl-Ruzouq/Remnants-of-a-New-World", "GitHub repository") + "</li>" +
-          "<li>Project assignment — " +
-            link("https://jhu.instructure.com/courses/130735/assignments/1322810", "Canvas") + "</li>" +
-          "<li>HTML Review, Issue 05 — " +
-            link("https://thehtml.review/05/", "thehtml.review/05") + "</li>" +
-          "<li>Background music — Danijel Zambo, “Only You”</li>" +
-          "<li>Paul Kalanithi — <i>When Breath Becomes Air</i></li>" +
-          "<li>Ron Padgett — “Creative Reading”</li>" +
-          "<li>Eunsong Kim — “Found, Found, Found: Lived, Lived, Lived”</li>" +
-        "</ul>";
+      appendApaList(sec, "References", APA_REFS);
+      appendApaList(sec, "Additional Project Materials", APA_MATERIALS);
       root.appendChild(sec);
     }
   });
@@ -431,7 +468,7 @@ function buildJourney() {
       if (e.target.id === "achievements") renderAchievements();
     });
   }, { threshold: [0, 0.05, 0.12, 0.25], rootMargin: "0px 0px -8% 0px" });
-  document.querySelectorAll(".beat, #closing, #achievements, #reflection, #refs").forEach((el) => beatIo.observe(el));
+  document.querySelectorAll(".beat, #closing, #achievements, #reflection, #process, #refs").forEach((el) => beatIo.observe(el));
 
   const wrun = document.getElementById("wrun");
   if (wrun) wrun.addEventListener("click", () => { sfx("click"); runWarp(); earn("warp"); });

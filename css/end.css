@@ -18,17 +18,17 @@
   text-align: center; padding: 6rem 1.25rem 3rem; max-width: 36rem; margin: 0 auto;
 }
 
-/* reflection essay */
-#reflection {
+/* reflection essay + process/tools */
+#reflection, #process {
   max-width: 40rem; margin: 0 auto; padding: 3.6rem 1.25rem 3.4rem;
   border-top: 1px solid var(--line);
   font-family: var(--serif); font-size: 1.02rem; line-height: 1.8; color: var(--ink);
 }
-#reflection h2 {
+#reflection h2, #process h2 {
   font-family: var(--serif); font-weight: 400; letter-spacing: 0.08em;
   font-size: 1.35rem; margin-bottom: 1.6rem;
 }
-#reflection p { margin-bottom: 1.25rem; text-wrap: pretty; }
+#reflection p, #process p { margin-bottom: 1.25rem; text-wrap: pretty; }
 #reflection blockquote {
   margin: 0.4rem 0 1.5rem; padding: 0.2rem 0 0.2rem 1.2rem;
   border-left: 2px solid var(--yellow);
@@ -36,19 +36,25 @@
 }
 #reflection blockquote span { display: block; }
 
-/* references */
+/* APA references */
 #refs {
-  max-width: 36rem; margin: 0 auto; padding: 3rem 1.25rem 6rem;
+  max-width: 40rem; margin: 0 auto; padding: 3rem 1.25rem 6rem;
   border-top: 1px solid var(--line);
-  font-family: var(--mono); font-size: 0.72rem; line-height: 1.7; color: var(--mute);
+  font-family: var(--serif); font-size: 0.92rem; line-height: 1.65; color: var(--ink);
 }
 #refs h2 {
-  font-weight: 400; font-size: 0.65rem; letter-spacing: 0.16em;
-  text-transform: uppercase; color: var(--ink); margin-bottom: 1.25rem;
+  font-family: var(--serif); font-weight: 400; letter-spacing: 0.08em;
+  font-size: 1.2rem; color: var(--ink); margin: 0 0 1.25rem;
 }
-#refs ul { list-style: none; }
-#refs li { margin-bottom: 0.85rem; padding-left: 0; }
-#refs a { color: var(--blue); }
+#refs h2 + .apa-list + h2 { margin-top: 2.4rem; }
+#refs .apa-list { list-style: none; padding: 0; margin: 0; }
+#refs .apa-list li {
+  margin-bottom: 1rem;
+  padding-left: 1.5rem;
+  text-indent: -1.5rem;
+  overflow-wrap: anywhere;
+}
+#refs a { color: var(--blue); word-break: break-all; }
 
 #rail {
   position: fixed; left: 0; top: 0; width: 2px; height: 0;

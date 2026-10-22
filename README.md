@@ -129,11 +129,12 @@ The **Sound** button in the bottom-right corner silences everything at once. It 
 
 ### End
 
-At the end of the journey, three sections follow in order:
+At the end of the journey, four sections follow in order:
 
 - **Achievements:** 29 in total, covering routes, stops, levels, the maze, and the notes. You can filter them by earned, all or missed.
 - **Reflection:** the full reflection essay.
-- **References:** links to the Markov poems and reflection, the found poems, the found-poems reflection, the Warp reflection, this GitHub repository, the project assignment and HTML Review issue 05. It also cites Kalanithi, Padgett and Kim.
+- **Process and Tools Statement:** how RiTa.js, Cursor, ChatGPT and the other materials shaped the work.
+- **References:** APA citations, plus an Additional Project Materials list (source poems, reflections, GitHub, the assignment).
 
 ---
 
@@ -160,7 +161,7 @@ css/                cascade order matters (as listed in index.html)
   end.css           closing, reflection, references, reduced motion
 js/                 classic scripts sharing one global scope, in load order
   content.js        poem, sheets, ROOMS, REFLECTION_NOTES, NOTE_SPOTS, SEQUENCE
-  reflection.js     REFLECTION_ESSAY — the full reflection shown at the end
+  reflection.js     REFLECTION_ESSAY, PROCESS_TOOLS, APA_REFS, APA_MATERIALS
   slides.js         found-poem slide layouts and Win95 pop-ups
   state.js          ACHIEVEMENTS and shared game state
   map.js            maze nodes, links, dead ends, travel and routes

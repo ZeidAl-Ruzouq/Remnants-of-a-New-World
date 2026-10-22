@@ -225,7 +225,7 @@ function arriveAt(target, id) {
 }
 
 function sectionForChart(id, includeHidden) {
-  return [...document.querySelectorAll("#journey > .beat, #closing, #achievements, #reflection, #refs")]
+  return [...document.querySelectorAll("#journey > .beat, #closing, #achievements, #reflection, #process, #refs")]
     .find((s) => s.dataset.chart === id && (includeHidden || s.style.display !== "none")) || null;
 }
 
@@ -249,7 +249,7 @@ function markVisited(nodeId) {
 }
 
 function syncChartFromScroll() {
-  const sections = [...document.querySelectorAll("#journey > .beat, #closing, #achievements, #reflection, #refs")]
+  const sections = [...document.querySelectorAll("#journey > .beat, #closing, #achievements, #reflection, #process, #refs")]
     .filter((el) => el.style.display !== "none" && el.dataset.chart);
   let best = null;
   let bestScore = -Infinity;

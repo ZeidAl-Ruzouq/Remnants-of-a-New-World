@@ -199,6 +199,7 @@ const SEQUENCE = [
   { type: "close" },
   { type: "achievements" },
   { type: "reflection" },
+  { type: "process" },
   { type: "refs" }
 ];
 
